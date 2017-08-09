@@ -24,9 +24,13 @@ def run_game():
 
     while True:
      gf.check_events(ship,ai_settings,screen,bullets)
-     gf.update_bullets(ai_settings,screen,ship,aliens,bullets)
-     gf.update_screen(ai_settings, screen, ship,bullets,aliens)
-     gf.update_aliens(ai_settings,stats,screen,ship,aliens,bullets)
+
+     if stats.game_active:
+         ship.update()
+         gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+         gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+
+     gf.update_screen(ai_settings, screen, ship, bullets, aliens)
      pygame.display.flip()
      ship.update()
 
